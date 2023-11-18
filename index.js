@@ -128,4 +128,33 @@ function selectAnswer(e){
     nextButton.style.display = "block";
 };
 
+
+// Function to display the final score at the end of the quiz
+function showScore(){
+    resetState();
+    questionElement.innerHTML = `You acored ${score} out of ${questions.length}!`;
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
+};
+
+// Function to handle the "Next" button click, moving to the next question or showing the final score
+function handleNextButton(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length){
+        showQuestion();
+    }else{
+        showScore();
+    }
+};
+
+//-
+nextButton.addEventListener("click", () => {
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    }else{
+       startQuiz(); 
+    }
+})
+
+//Start the quiz when the page loads
 startQuiz();
